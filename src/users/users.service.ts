@@ -10,6 +10,7 @@ export class UserService {
 
   createUser(createUserDto: CreateUserDto) {
     const newUser = new this.userModel(createUserDto);
+    console.log(newUser);
     return newUser.save();
   }
 }

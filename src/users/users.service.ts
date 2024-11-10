@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Get, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/schemas/User.schema';
@@ -12,5 +12,10 @@ export class UserService {
     const newUser = new this.userModel(createUserDto);
     console.log(newUser);
     return newUser.save();
+  }
+
+  @Get()
+  getsAllUsers() {
+    return this.userModel.find().exec(); // Cette méthode retourne une promesse
   }
 }

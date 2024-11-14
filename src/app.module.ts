@@ -1,17 +1,13 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './users/users.module';
-import { AuthService } from './auth/auth.service';
-import { AuthController } from './auth/auth.controller';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module'; // Assure-toi que AuthModule est bien importé
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/nest_next_users'),
     UserModule,
-    AuthModule,
+    AuthModule, // AuthModule doit être bien importé ici
   ],
-  controllers: [AuthController],
-  providers: [AuthService],
 })
 export class AppModule {}

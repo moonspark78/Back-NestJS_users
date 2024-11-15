@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Post } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { AuthUser } from '../schemas/AuthUser.schema';
@@ -28,5 +28,10 @@ export class AuthService {
     const payload = { email: user.email, sub: user._id }; // Crée le payload pour le JWT
     const accessToken = this.jwtService.sign(payload); // Génère un token JWT
     return { accessToken };
+  }
+
+  @Post('logout')
+  async logout(): Promise<{ message: string }> {
+    return { message: 'Déconnexion réussie' }; // Retourne un objet avec un message
   }
 }

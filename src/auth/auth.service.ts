@@ -25,9 +25,9 @@ export class AuthService {
     const isPasswordValid = await bcrypt.compare(password, user.password); // Comparaison des mots de passe
     if (!isPasswordValid) throw new Error('Invalid credentials');
 
-    const payload = { email: user.email, sub: user._id }; // Crée le payload pour le JWT
-    const accessToken = this.jwtService.sign(payload); // Génère un token JWT
-    return { accessToken };
+    const payload = { email: user.email, sub: user._id };
+    const token = this.jwtService.sign(payload); // Générer le token JWT
+    return { token }; // Assurez-vous que le token est bien renvoyé
   }
 
   @Post('logout')
